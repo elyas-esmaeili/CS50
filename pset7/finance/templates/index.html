@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for i in range(rows | length) %}
+                <tr>
+                    <td>{{rows[i]["name"]}}</td>
+                    <td>{{rows[i]["name"]}}</td>
+                    <td>{{rows[i]["sum"]}}</td>
+                    <td>{{prices[i] | usd}}</td>
+                    {% set sum = prices[i] * rows[i]["sum"] %}
+                    <td> {{sum | usd }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td colspan="3"></td>
+                <td>{{cash | usd}}</td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <td colspan="4"></td>
+            <td>{{total | usd}}</td>
+        </tfoot>
+    </table>
+{% endblock %}
